@@ -1,9 +1,15 @@
 package org.example.utils.http;
 
 import io.restassured.RestAssured;
+import io.restassured.filter.log.LogDetail;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
+import io.restassured.specification.RequestSpecification;
+
+import static io.restassured.RestAssured.when;
 
 public class HttpClient {
     HttpAttributes attributes;
@@ -12,38 +18,38 @@ public class HttpClient {
         this.attributes = attributes;
     }
 
-    public Response getRequest() {
-        Response response = RestAssured
+    static {
+        RestAssured.filters(new RequestLoggingFilter(LogDetail.ALL), new ResponseLoggingFilter(LogDetail.ALL));
+    }
+
+    private RequestSpecification setRequest() {
+        RequestSpecification request = RestAssured
                 .given()
                 .accept(ContentType.HTML)
-                .log()
-                .all()
-                .baseUri(attributes.baseUri)
-                .basePath(attributes.basePath)
+                .baseUri(attributes.baseUri);
+        return request;
+    }
+
+    public Response getRequest() {
+        Response response = setRequest()
                 .when()
-                .get();
+                .get(attributes.basePath);
         return response;
     }
 
     public Response postRequest() {
-        Response response = RestAssured
-                .given()
-                .baseUri(attributes.baseUri)
-                .basePath(attributes.basePath)
+        Response response = setRequest()
                 .body(attributes.content)
                 .when()
-                .post();
+                .post(attributes.basePath);
         return response;
     }
 
     public Response putRequest() {
-        Response response = RestAssured
-                .given()
-                .baseUri(attributes.baseUri)
-                .basePath(attributes.basePath)
+        Response response = setRequest()
                 .body(attributes.content)
                 .when()
-                .put();
+                .put(attributes.basePath);
         return response;
     }
 }
