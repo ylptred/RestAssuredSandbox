@@ -16,7 +16,7 @@ public class MainPageTest {
     public void shouldReturnDate() throws IOException {
         new Props();
         new HttpClient(
-                new HttpAttributes(Props.url, "/", ""))
+                new HttpAttributes(Props.url))
                 .getRequest()
                 .then()
                 .log()
