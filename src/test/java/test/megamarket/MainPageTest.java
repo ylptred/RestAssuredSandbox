@@ -1,6 +1,5 @@
 package test.megamarket;
 
-import io.restassured.RestAssured;
 import org.example.utils.http.HttpAttributes;
 import org.example.utils.http.HttpClient;
 import org.testng.annotations.Test;
@@ -19,8 +18,6 @@ public class MainPageTest {
                 new HttpAttributes(Props.url))
                 .getRequest()
                 .then()
-                .log()
-                .body()
                 .statusCode(200)
                 .time(lessThan(5000L));
     }
