@@ -25,7 +25,7 @@ public class HttpClient {
     private RequestSpecification setRequest() {
         RequestSpecification request = RestAssured
                 .given()
-                .accept(ContentType.HTML)
+                .accept(ContentType.BINARY)
                 .baseUri(attributes.baseUri);
         return request;
     }

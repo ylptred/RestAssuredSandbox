@@ -14,4 +14,8 @@ public class HttpAttributes {
     public HttpAttributes(String baseUri) {
         this(baseUri, "", "");
     }
+
+    public HttpAttributes(String baseUri, String basePath) {
+        this(baseUri, basePath, "");
+    }
 }

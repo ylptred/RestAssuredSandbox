@@ -13,7 +13,7 @@ public class MainPageTest {
 
     @Test(description = "Проверяем доступность сервиса СберМегаМаркет")
     public void shouldReturnDate() throws IOException {
-        new Props();
+        new Props("megamarket");
         new HttpClient(
                 new HttpAttributes(Props.url))
                 .getRequest()
