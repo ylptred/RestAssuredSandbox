@@ -7,3 +7,4 @@ __________
 - **java 21.0.2**
 - **rest-assured 5.4.0**
 - **testng 7.9.0**
+- **jackson-databind 2.16.1**
