@@ -1,6 +1,6 @@
 package test.petstore.dto;
 
-public class BaseClass {
+public class BasePet {
     private Integer id;
     private String name;
 

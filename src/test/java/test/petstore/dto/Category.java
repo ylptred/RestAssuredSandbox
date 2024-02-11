@@ -1,5 +1,5 @@
 package test.petstore.dto;
 
-public class Category extends BaseClass {
+public class Category extends BasePet {
 
 }

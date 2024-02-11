@@ -6,14 +6,13 @@ import java.nio.file.StandardOpenOption;
 import java.util.Properties;
 import java.nio.file.Files;
 
-public class Props {
+public class ProjectProperties {
     public static String url;
 
-    public Props() throws IOException {
+    public ProjectProperties(String host) throws IOException {
         InputStream inputStream = Files.newInputStream(Paths.get("src/test/java/resources/config/config.properties"),
                 StandardOpenOption.READ);
         Properties config = new Properties();
         config.load(inputStream);
-        url = config.getProperty("megamarket.url");
-    }
+        url = config.getProperty(String.format("%s.url", host));    }
 }
