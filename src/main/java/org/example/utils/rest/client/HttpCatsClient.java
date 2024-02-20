@@ -7,9 +7,10 @@ import io.restassured.specification.RequestSpecification;
 import org.example.utils.config.ProjectProperties;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class HttpCatsClient extends BaseClient {
-    private RequestSpecification setRequest() throws IOException {
+    private RequestSpecification setRequest() throws IOException, URISyntaxException {
         new ProjectProperties("httpcat");
         return RestAssured
                 .given()
@@ -18,9 +19,9 @@ public class HttpCatsClient extends BaseClient {
                 .baseUri(ProjectProperties.url);
     }
 
-    public Response getCat(String status) throws IOException {
+    public Response getCat(String status) throws IOException, URISyntaxException {
         return setRequest()
                 .when()
-                .get(String.format("%s", status));
+                .get(status);
     }
 }
